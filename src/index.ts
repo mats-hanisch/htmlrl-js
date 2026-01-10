@@ -1,2 +1,2 @@
 
-export { default } from "./api/html-template-lib.js";
+export { default } from "./api/htmlrl.js";
