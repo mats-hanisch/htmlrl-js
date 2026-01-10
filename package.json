@@ -1,5 +1,5 @@
 {
-  "name": "html-template-lib",
+  "name": "htmlrl",
   "version": "1.0.0",
   "description": "A simple yet powerful HTML template utility library for Node.js",
   "type": "module",

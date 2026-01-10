@@ -1,9 +1,9 @@
 import {
-    LegacyInvalidRenderArgsPassedError,
-    LegacyUninspectableRenderArgError,
-    LegacyInvalidRenderArgError,
-    LegacyInvalidRenderArgsCyclicReferenceError,
-    LegacyInvalidRenderArgValueError
+    InvalidRenderArgsPassedError,
+    UninspectableRenderArgError,
+    InvalidRenderArgError,
+    InvalidRenderArgsCyclicReferenceError,
+    InvalidRenderArgValueError
 } from "../diagnostics/legacy/shared/legacy-render-arg-errors.js";
 
 import RenderArgs from "./render-args.js";
@@ -17,7 +17,7 @@ export default class RntmValueConverter {
         
         if (renderArgs === null || typeof renderArgs !== 'object' || Object.getPrototypeOf(renderArgs) !== Object.prototype) {
             // not a plain object - invalid
-            throw new LegacyInvalidRenderArgsPassedError(renderArgs, filePath);
+            throw new InvalidRenderArgsPassedError(renderArgs, filePath);
         }
         
         // store seen values
@@ -29,11 +29,11 @@ export default class RntmValueConverter {
             
             if (desc === undefined) {
                 // property cannot be accessed properly - something went wrong
-                throw new LegacyUninspectableRenderArgError(argName, filePath);
+                throw new UninspectableRenderArgError(argName, filePath);
             }
             
             if (!("value" in desc)) {
-                throw new LegacyInvalidRenderArgError("Usage of getters/setters detected, which is not allowed. Only plain, stable data without dynamic properties may be used.", argName, filePath);
+                throw new InvalidRenderArgError("Usage of getters/setters detected, which is not allowed. Only plain, stable data without dynamic properties may be used.", argName, filePath);
             }
             
             vars[argName] = RntmValueConverter.toRntmValue(
@@ -65,7 +65,7 @@ export default class RntmValueConverter {
             // cyclic reference detection
             if (seenValues.has(value)) {
                 // detected cycle
-                throw new LegacyInvalidRenderArgsCyclicReferenceError(filePath);
+                throw new InvalidRenderArgsCyclicReferenceError(filePath);
             }
             
             // mark value as seen already
@@ -83,7 +83,7 @@ export default class RntmValueConverter {
             // should be plain object
             if (Object.getPrototypeOf(value) !== Object.prototype) {
                 // not a object - invalid
-                throw new LegacyInvalidRenderArgValueError(argName, value, filePath, "Objects must be plain, stable data.");
+                throw new InvalidRenderArgValueError(argName, value, filePath, "Objects must be plain, stable data.");
             }
             
             const props: { [key: string]: RntmValue } = Object.create(null);
@@ -94,11 +94,11 @@ export default class RntmValueConverter {
                 
                 if (desc === undefined) {
                     // property cannot be accessed properly - something went wrong
-                    throw new LegacyUninspectableRenderArgError(key, filePath);
+                    throw new UninspectableRenderArgError(key, filePath);
                 }
                 
                 if (!("value" in desc)) {
-                    throw new LegacyInvalidRenderArgError("Usage of getters/setters detected, which is not allowed. Only plain, stable data without dynamic properties may be used.", key, filePath);
+                    throw new InvalidRenderArgError("Usage of getters/setters detected, which is not allowed. Only plain, stable data without dynamic properties may be used.", key, filePath);
                 }
                 
                 props[key] = RntmValueConverter.toRntmValue(
@@ -113,7 +113,7 @@ export default class RntmValueConverter {
         }
         
         // everything else is invalid
-        throw new LegacyInvalidRenderArgValueError(argName, value, filePath);
+        throw new InvalidRenderArgValueError(argName, value, filePath);
     }
     
     public static toHtmlString(value: RntmValue): string {

@@ -22,7 +22,7 @@ import BytecodeGenerator from "../compiler/backend/bytecode-generator.js";
 import BytecodeInterpreter from "../runtime/bytecode-interpreter.js";
 
 
-interface HtmlTemplateLibOptions {
+interface HtmlrlOptions {
     readonly rootDir: string;
 }
 
@@ -52,12 +52,12 @@ class LibInitializationError extends Error {
 }
 
 
-export default class HtmlTemplateLib {
+export default class Htmlrl {
     private readonly ctx: LibContext;
     private readonly lexingUtils: LexingUtils;
     private bcCache: Map<string, Bytecode>; // relative file path -> bc
     
-    constructor(options: HtmlTemplateLibOptions) {
+    constructor(options: HtmlrlOptions) {
         // validate options
         
         // rootDir
@@ -73,7 +73,7 @@ export default class HtmlTemplateLib {
         
         // init
         try {
-            this.ctx = HtmlTemplateLib.createContext(options);
+            this.ctx = Htmlrl.createContext(options);
             this.lexingUtils = new LexingUtils(this.ctx);
             this.bcCache = new Map();
         }
@@ -151,7 +151,7 @@ export default class HtmlTemplateLib {
         }
     }
     
-    private static createContext(validatedOptions: HtmlTemplateLibOptions): LibContext {
+    private static createContext(validatedOptions: HtmlrlOptions): LibContext {
         const stringUtils: StringUtils = new StringUtils();
         const fsUtils: FileSystemUtils = new FileSystemUtils(validatedOptions.rootDir);
         const charTraits: CharTraits = new CharTraits(stringUtils);

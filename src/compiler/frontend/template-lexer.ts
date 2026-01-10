@@ -5,7 +5,7 @@ import { TemplateToken } from "../../shared/template-token.js";
 
 import LexingUtils from "./lexing-utils.js";
 
-import { LegacyCompilationSyntaxError } from "../../diagnostics/legacy/compiler/legacy-compiler-errors.js";
+import { CompilationSyntaxError } from "../../diagnostics/legacy/compiler/legacy-compiler-errors.js";
 
 
 
@@ -48,7 +48,7 @@ export default class TemplateLexer {
                 }
                 
                 if (!this.utils.isIdentifierStart(next!)) {
-                    throw new LegacyCompilationSyntaxError(`Invalid html escape sequence: Expected identifier after '@', got '${next}'.\n\nHint: To display a literal '@' in html, use '@@'.`, this.srcLocation.copy());
+                    throw new CompilationSyntaxError(`Invalid html escape sequence: Expected identifier after '@', got '${next}'.\n\nHint: To display a literal '@' in html, use '@@'.`, this.srcLocation.copy());
                 }
                 
                 // finalize and push html token

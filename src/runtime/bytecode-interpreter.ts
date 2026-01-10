@@ -4,7 +4,7 @@ import { Bytecode, Instruction, OpCode } from "../shared/bytecode.js";
 import { RntmValue, RntmVars } from "../shared/rntm-types.js";
 import RntmValueConverter from "../shared/rtnm-value-converter.js";
 
-import { LegacyMissingRenderArgError } from "../diagnostics/legacy/shared/legacy-render-arg-errors.js";
+import { MissingRenderArgError } from "../diagnostics/legacy/shared/legacy-render-arg-errors.js";
 
 
 export default class BytecodeInterpreter {
@@ -47,7 +47,7 @@ export default class BytecodeInterpreter {
         
         if (value === undefined) {
             // missing var
-            throw new LegacyMissingRenderArgError(varName, this.bc.targetFilePath);
+            throw new MissingRenderArgError(varName, this.bc.targetFilePath);
         }
         
         // convert value and html-escape it

@@ -4,7 +4,7 @@ import SourceLocation from "../../../shared/source-location.js";
 
 
 // super class for more specfic errors
-export class LegacyCompilationError extends Error {
+export class CompilationError extends Error {
     constructor(name: string, msg: string, srcLocation: SourceLocation) {
         super(`${srcLocation.filePath}:${srcLocation.line}:${srcLocation.column}\n\n${name}: ${msg}`);
         
@@ -12,7 +12,7 @@ export class LegacyCompilationError extends Error {
     }
 }
 
-export class LegacyCompilationSyntaxError extends LegacyCompilationError {
+export class CompilationSyntaxError extends CompilationError {
     constructor(msg: string, srcLocation: SourceLocation) {
         super("SyntaxError", msg, srcLocation);
     }
