@@ -44,7 +44,7 @@ export class InvalidRenderArgTypeError extends InvalidRenderArgError {
 export class InvalidRenderArgValueError extends InvalidRenderArgError {
     constructor(argName: string, value: unknown, templateFilePath: string, note?: string) {
         super(
-            `Value is of an invalid type '${typeof value}'. Value must be one of the following valid datatypes: null, boolean, number, string, array, or object.${note !== undefined ? `\n\nNote: ${note}` : ""}`,
+            `Value is of or contains an invalid type '${typeof value}'. Value must be one of the following valid datatypes: null, boolean, number, string, array, or object.${note !== undefined ? `\n\nNote: ${note}` : ""}`,
             argName,
             templateFilePath
         );
