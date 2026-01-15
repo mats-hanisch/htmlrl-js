@@ -1,6 +1,6 @@
 {
   "name": "htmlrl",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple yet powerful HTML template utility library for Node.js",
   "type": "module",
   "sideEffects": false,
@@ -39,6 +39,6 @@
   },
   "repository": {
     "type": "git",
-    "url":"https://github.com/mats-hanisch/htmlrl-js.git"
+    "url": "https://github.com/mats-hanisch/htmlrl-js.git"
   }
 }
