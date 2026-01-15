@@ -28,7 +28,7 @@ designed to grow incrementally.
 ## Installation (via npm)
 
 ```bash
-   npm install htmlrl
+npm install htmlrl
 ```
 
 To the [npm site](https://www.npmjs.com/package/htmlrl) of htmlrl.
