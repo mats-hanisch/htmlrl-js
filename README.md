@@ -70,7 +70,7 @@ To render files use the asynchronous function `renderAsync` and pass the filenam
 
 ## Output
 
-The above example evaluates to the following html file:
+The above example evaluates to the following html string:
 
 ```html
 <h1>Welcome to my page!</h1>
@@ -83,7 +83,7 @@ All variables are HTML-escaped automatically.
 
 `renderAsync` automatically compiles your files at the first call and stores them in a cache for later usage and to avoid costly recompilation.
 If you want deterministic performance, especially with larger template files, it is recommended to use `compileAsync` to precompile the
-needed templates bevor they are acctually used.
+needed templates bevor they are actually used.
 
 Example:
 
@@ -109,7 +109,7 @@ But this time there is no compiler overhead as it was already compiled bevor.
 
 ## Security Notice
 
-htmlrl performs **basic HTML escaping only** and is **not context-aware**.
+htmlrl performs **basic HTML escaping only** and is **NOT context-aware**.
 
 This means:
 
