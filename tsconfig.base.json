@@ -5,9 +5,18 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    
     "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "useUnknownInCatchVariables": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noEmitOnError": true,
+    
     "esModuleInterop": true,
     "skipLibCheck": true
   },
   "include": ["src"]
 }
+
