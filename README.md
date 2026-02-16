@@ -13,6 +13,14 @@ designed to grow incrementally.
 
 ---
 
+## Latest Update
+
+Dual build support added: htmlrl now ships both ESM and CommonJS builds.
+- ESM users: continue using `import Htmlrl from "htmlrl"`
+- CommonJS users: use `require("htmlrl").default` to access the class
+
+---
+
 ## Features (MVP)
 
 - Simple variable replacement using `@var`
@@ -21,7 +29,7 @@ designed to grow incrementally.
 - Fail-fast error handling
 - Deterministic rendering
 - Cache to avoid recompilation at every request
-- Full TypeScript support
+- Full TypeScript support (works in both ESM and CommonJS projects)
 
 ---
 

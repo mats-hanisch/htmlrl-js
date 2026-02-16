@@ -4,12 +4,13 @@
   "description": "A simple yet powerful HTML template utility library for Node.js",
   "type": "module",
   "sideEffects": false,
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
     }
   },
   "files": [
@@ -17,8 +18,8 @@
   ],
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && tsc",
-    "dev": "ts-node src/index.ts",
+    "build": "npm run clean && tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json && node scripts/post-build.js",
+    "dev": "tsx src/index.ts",
     "prepublishOnly": "npm run build"
   },
   "engines": {
@@ -34,7 +35,7 @@
   "devDependencies": {
     "@types/node": "^20.11.30",
     "rimraf": "^6.1.2",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "repository": {
